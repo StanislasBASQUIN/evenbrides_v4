@@ -2,22 +2,35 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :validated_events
 
-  def index
+  def index    
+
+
+
   end
 
   def show
     @event = Event.find(params[:id])
+
+
   end
   
   def new 
-  	@event = Event.new
-  end 
+    @event = Event.new
+    if @event
+    flash[:warning]="VOiCI la page des Events"
+    redirect_to @event
+
+    end
+
+end
 
   def create
+
     @event = Event.new(event_params)
     @event.admin = current_user
 
     if @event.save
+
       redirect_to events_path, notice: "L'événement #{@event.title} a bien été créé ! Bien joué petit génie !"
     else
       redirect_to new_event_path, alert: "Certaines informations sont incorrectes : la description doit faire au moins 20 caractères et la date doit être dans le futur. "

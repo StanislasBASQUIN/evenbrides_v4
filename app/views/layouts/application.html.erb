@@ -2,10 +2,17 @@
 <html>
   <head>
     <title>EvenbridesV1</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/flash'%>
+    
+
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      
       <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
       <script src="https://kit.fontawesome.com/46962466a1.js" crossorigin="anonymous"></script>
  
@@ -31,80 +38,7 @@
     <% end %>
 
 
-  <nav class="navbar navbar-expand-lg navbar-success bg-light">
-    
-    <div class="column">
-      <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30163918/1241-768x591.png" class="img-fluid">
-    </div>
-    
-    <div class="navbar-brand column ml-4">
-      <%= link_to "Evenbrides", events_path %>
-    </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="navbar-collapse" id="navbarSupportedContent">
-      
-      <ul class="navbar-nav mr-auto">
-        
-          <div class='container-navbar pl-3'>
-                
-            <li class="nav-item active">
-              <div class="nav-link pl-3"><%= link_to "Créer un Event", new_event_path %> </div>
-            </li>
-
-            <li class="nav-item active">
-              <div class="nav-link pl-3"><%= link_to "Participer à un Event", events_path %> </div>
-            </li>  
-          </div>
-      </ul>
-          <div class="dropdown pr-5 mr-3">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Profil
-            </a>
-          
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <% if user_signed_in? %>
-                  <li class="dropdown-item">
-                    <%= link_to "Mon profil", user_path(current_user) %>
-                  </li>
-                  <li class="dropdown-item">
-                    <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
-                  </li>
-
-                  <!-- Espace administrateur -->
-                  <% if current_user.is_admin == true %>
-                    <li class="dropdown-item">
-                      <%= link_to "Dashboard User", admin_users_path %>
-                    </li>
-                  <% end %>
-
-                  <% if current_user.is_admin == true %>
-                    <li class="dropdown-item">
-                      <%= link_to "Dashboard Event", admin_events_path %>
-                    </li>
-                  <% end %>
-
-                <% else %>
-                  <li class="dropdown-item">
-                    <%= link_to "S'inscrire ", new_user_registration_path %>
-                  </li>
-                  <li class="dropdown-item">
-                    <%= link_to "Se connecter", new_user_session_path %>
-                  </li>
-                <% end %>
-            </div>             
-              
-                  
-          </div>
-          
-        </div>
-      
-    </div>
-     
-    </nav>
+  
 
     <%= yield %>
     
@@ -117,7 +51,13 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+  
+    
+
+
   </body>
+  <%= render 'layouts/footer' %>
+
 </html>
 
 
